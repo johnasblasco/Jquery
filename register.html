@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-box {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 50px;
+        }
+        .form-box header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-box .field {
+            margin-bottom: 15px;
+        }
+        .form-box .field label {
+            font-weight: bold;
+        }
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box form-box">
+            <header>Sign up</header>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <div class="links">
+                    Already have an account? <a href="index.html">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            var email = document.getElementById("email").value;
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            var formData = new FormData();
+            formData.append('email', email);
+            formData.append('username', username);
+            formData.append('password', password);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "register.php", true);
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            // Successful response
+                            alert("Registration successful!");
+                            window.location.href = 'index.html';
+                        } else {
+                            // Error handling
+                            alert("An error occurred while registering.");
+                        }
+                    }
+                }
+            };
+
+            xhr.send(formData);
+        });
+    </script>
+</body>
+</html>

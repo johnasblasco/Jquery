@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="icon" href="assets/games.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .profile {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn-back {
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <h2>Edit Profile</h2>
+            <div id="message"></div> <!-- To display success or error messages -->
+            <form id="editProfileForm">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+        <a href="home.html" class="btn btn-back">Back</a>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#editProfileForm').submit(function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get updated user data
+                var email = $('#email').val();
+                var username = $('#username').val();
+                var password = $('#password').val();
+
+                // Send data to server using AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: 'update_profile_endpoint.php', // Replace with your server-side endpoint
+                    data: {
+                        email: email,
+                        username: username,
+                        password: password
+                    },
+                    success: function(response) {
+                        // Display success message
+                        $('#message').html('<div class="alert alert-success" role="alert">Profile updated successfully!</div>');
+                    },
+                    error: function(xhr, status, error) {
+                        // Display error message
+                        $('#message').html('<div class="alert alert-danger" role="alert">Error updating profile. Please try again later.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

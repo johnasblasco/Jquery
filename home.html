@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game BOY</title>
+    <link rel="icon" href="assets/games.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .home-screen {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .navigation {
+            margin-bottom: 20px;
+        }
+        .navigation a {
+            margin-right: 20px;
+        }
+        .play-container {
+            margin-bottom: 20px;
+        }
+        .play-container a {
+            margin-right: 10px;
+        }
+        .user-stats {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+        .user-stats h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="home-screen">
+            <!-- Navigation options -->
+            <div class="navigation">
+                <a href="about.html">About</a>
+                <a href="howtoplay.html">How to Play</a>
+                <a href="profile.html"> Profile</a>
+            </div>
+
+            <div class="play-container">
+                <a href="game/game.html" class="btn btn-primary" id="new-game">New Game</a>
+                <a href="index.html" class="btn btn-danger">Log out</a>
+            </div>
+
+            <h2>Welcome to the Hardest Game Ever</h2>
+        </div>
+    </div>
+    
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        // Function to retrieve user statistics from XML
+        $(document).ready(function() {
+            var loggedInUser = localStorage.getItem('loggedInUser');
+            $.ajax({
+                type: "GET",
+                url: "data.xml", // Assuming this is the path to your XML file
+                dataType: "xml",
+                success: function(xml) {
+                    var userFound = false;
+                    $(xml).find('user').each(function() {
+                        var username = $(this).find('username').text();
+                        if (username === loggedInUser) {
+                            userFound = true;
+                            var wins = $(this).find('wins').text();
+                            var gamesPlayed = $(this).find('gamesPlayed').text();
+                            $('#wins').text(wins);
+                            $('#gamesPlayed').text(gamesPlayed);
+                            return false; // Exit the loop
+                        }
+                    });
+                    if (!userFound) {
+                        console.error('User not found in XML.');
+                        // Handle user not found scenario
+                    }
+                },
+                error: function() {
+                    console.error('Error fetching XML data.');
+                }
+            });
+        });
+
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

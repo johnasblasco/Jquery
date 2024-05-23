@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="icon" href="assets/games.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 50px;
+        }
+        .profile {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn-back {
+            color: #fff;
+            background-color: #dc3545;
+            border: none;
+        }
+        .btn-back:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <h2>Profile Details</h2>
+            <div id="profileData"></div>
+        </div>
+        <a href="home.html" class="btn btn-back">Back</a>
+    </div>
+
+    <!-- Include jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Retrieve the logged-in username from local storage
+            var loggedInUser = localStorage.getItem('loggedInUser');
+
+            // Fetch XML data
+            $.ajax({
+                type: "GET",
+                url: "data.xml", // Change to your XML file path
+                dataType: "xml",
+                cache: false,
+                success: function(xml) {
+                    var userData;
+
+                    // Find the user data for the logged-in user
+                    $(xml).find('user').each(function() {
+                        if ($(this).find('username').text() === loggedInUser) {
+                            userData = $(this);
+                            return false; // Exit the loop once user is found
+                        }
+                    });
+
+                    // Populate HTML with user data
+                    if (userData) {
+                        // Display user data in the profile page
+                        $('#profileData').html(`
+                            <p><strong>Email:</strong> ${userData.find('email').text()}</p>
+                            <p><strong>Username:</strong> ${userData.find('username').text()}</p>
+                            <p><strong>Games Played:</strong> ${userData.find('gamesPlayed').text()}</p>
+                            <p><strong>Score:</strong> ${userData.find('score').text()}</p>
+                            <a href="editprofile.html">Edit user details</a>
+                            
+                        `);
+                    } else {
+                        $('#profileData').html('<p>User not found.</p>');
+                    }
+                },
+                error: function() {
+                    console.error('Error fetching user data.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

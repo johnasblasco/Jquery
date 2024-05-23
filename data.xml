@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<users><user><user>
+    <email>admin@email.com</email>
+    <username>admin</username>
+    <password>admin</password>
+    <gamesPlayed>0</gamesPlayed>
+    <score>0</score>
+</user></user><user><user>
+    <email>a@a</email>
+    <username>a</username>
+    <password>a</password>
+    <gamesPlayed>0</gamesPlayed>
+    <score>0</score>
+</user></user><user><user>
+    <email>johnas@johnas</email>
+    <username>johnas</username>
+    <password>johnas</password>
+    <gamesPlayed>0</gamesPlayed>
+    <score>0</score>
+</user></user><user><user>
+    <email>a@a</email>
+    <username>a</username>
+    <password>a</password>
+    <gamesPlayed>0</gamesPlayed>
+    <score>0</score>
+</user></user></users>

@@ -1,0 +1,104 @@
+
+
+h1 {
+  font-size: 20px;
+}
+
+#reset-btn > a{
+  text-decoration: none;
+}
+
+/* - - - MEDIA - - - - - - - - - - - - - - - */
+
+img, video {
+	max-width:100%;
+	height:auto;
+}
+
+/* - - - CLASSES - - - - - - - - - - - - - - */
+
+.ui-progressbar-value {
+  background-color: grey;
+}
+
+/* - - - ID's- - - - - - - - - - - - - - - - */
+
+#answers {
+  text-align: center;
+  padding: 15px;
+  border: none;
+}
+
+#answers > span {
+  background-color: lightgrey;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 5px;
+}
+
+#barnote {
+  text-align: center;
+  font-size: 0.9em;
+}
+
+#drophere {
+  font-family: sans-serif;
+  text-align: center;
+  background-color: lightgrey;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+#game-over {
+  width: 400px;
+  padding-top: 50px;
+  margin: auto;
+  text-align: center;
+}
+
+#question {
+  text-align: center;
+}
+
+#tabs {
+  width: 400px;
+  min-height: 400px;
+  margin: auto;
+}
+
+#pbar {
+  display: inline;
+}
+
+#progressbar {
+  width: 300px;
+  height: 15px;
+  background-color: lightgrey;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+#reset-btn {
+  float: right;
+  background-color: lightgrey;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+/* - - - MEDIA QUERIES - - - - - - - - - - - */
+
+/* - - - - - - - - - - - - - - - - - - - - - */

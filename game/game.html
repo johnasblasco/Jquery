@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>JavaScript Quiz Game</title>
+        <script src="files/libs/jquery.js"></script>
+        <script src="files/libs/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="files/libs/jquery-ui.min.css">
+        <link rel="stylesheet" href="files/libs/css-mini-reset_vladocar.css">
+        <link href="style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+      <div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Quiz Game</a></li>
+  </ul>
+  <div id="tabs-1">
+    <h1>Quiz Game</h1>
+    <br>
+    <h3>Question Number <span id="counter"></span></h3>
+    <br>
+    <p id="barnote">PROGRESS</p>
+    <div id="progressbar"></div>
+
+    <h3 id="question">.</h3>
+    <div id="answers" class="ui-widget-content"></div>
+
+    <div id="drophere">
+      <p>Drag answer here</p>
+    </div>
+
+    <div id="wrong" title="Wrong&#33;"></div>
+    <div id="right" title="Correct&#33;"></div>
+
+    
+    <p id="reset-btn"><a href="../home.html">Back</a></p>
+    <p id="reset-btn"><a href="game.html">Reset</a></p>
+
+  </div>
+
+</div>
+      <script src="script.js"></script>
+    </body>
+</html>
